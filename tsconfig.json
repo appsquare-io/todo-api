@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "strict": true,
+    "jsx": "react-jsx",
+    "jsxFragmentFactory": "Fragment",
+    "jsxImportSource": "hono/jsx",
+    "lib": ["DOM", "ES2022"],
+    "paths": {
+      "~/*": ["./src/*"]
+    }
+  }
+}

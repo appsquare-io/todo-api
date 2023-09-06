@@ -1,0 +1,21 @@
+{
+  "scripts": {
+    "dev": "bun run --hot src/index.ts",
+    "start": "bun run migrate && bun run src/index.ts",
+    "generate": "drizzle-kit generate:pg --out ./drizzle/migrations --breakpoints --schema=./src/schema.ts",
+    "migrate": "bun run drizzle/migrate.ts"
+  },
+  "dependencies": {
+    "@hono/zod-validator": "^0.1.8",
+    "drizzle-orm": "^0.28.5",
+    "hono": "^3.5.4",
+    "postgres": "^3.3.5",
+    "tsx": "^3.12.8",
+    "zod": "^3.22.2"
+  },
+  "devDependencies": {
+    "@flydotio/dockerfile": "latest",
+    "bun-types": "^0.6.2",
+    "drizzle-kit": "^0.19.13"
+  }
+}
