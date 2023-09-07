@@ -13,7 +13,9 @@ app.get('/', (c) =>
         <br />
         POST /api/todos
         <br />
-        PUT /api/todos/:id
+        PATCH /api/todos/:id
+        <br />
+        DELETE /api/todos/:id
         <br />
         <br />
         type Todo = { id: number; completed?: boolean; title?: string; }
