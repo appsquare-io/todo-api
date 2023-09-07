@@ -1,3 +1,4 @@
+import { cors } from 'hono/cors'
 import { logger } from 'hono/logger'
 import { prettyJSON } from 'hono/pretty-json'
 
@@ -9,6 +10,7 @@ import { todos } from './routes/todos'
 
 const app = createApp()
 
+app.use('*', cors())
 app.use('*', logger())
 app.use('*', prettyJSON())
 
