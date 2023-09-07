@@ -9,13 +9,13 @@ app.get('/', (c) =>
     html`<!DOCTYPE html>
       <code>
         <h4>README</h4>
-        GET /api/todos
+        GET /todos
         <br />
-        POST /api/todos
+        POST /todos
         <br />
-        PATCH /api/todos/:id
+        PATCH /todos/:id
         <br />
-        DELETE /api/todos/:id
+        DELETE /todos/:id
         <br />
         <br />
         type Todo = { id: number; completed?: boolean; title?: string; }
