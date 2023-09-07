@@ -19,8 +19,9 @@ app.post('/', zValidator('json', CreateTodoSchema), async (c) => {
   return c.json({ todo })
 })
 
-app.put('/:id', zValidator('json', UpdateTodoSchema), async (c) => {
+app.patch('/:id', zValidator('json', UpdateTodoSchema), async (c) => {
   const data = await c.req.valid('json')
+
   const id = parseInt(c.req.param().id)
 
   const todos = await updateTodo(id, data, c.get('token'))
