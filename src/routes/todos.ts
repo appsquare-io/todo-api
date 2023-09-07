@@ -2,7 +2,7 @@ import { HTTPException } from 'hono/http-exception'
 import { zValidator } from '@hono/zod-validator'
 
 import { createApp } from '~/utils/hono'
-import { getTodos, createTodo, updateTodo } from '~/todos'
+import { getTodos, createTodo, updateTodo, deleteTodo } from '~/todos'
 import { CreateTodoSchema, UpdateTodoSchema } from '~/schema'
 
 const app = createApp()
@@ -25,6 +25,18 @@ app.patch('/:id', zValidator('json', UpdateTodoSchema), async (c) => {
   const id = parseInt(c.req.param().id)
 
   const todos = await updateTodo(id, data, c.get('token'))
+
+  if (todos.length === 1) {
+    return c.json({ todo: todos[0] })
+  }
+
+  throw new HTTPException(404, { message: 'Todo not found' })
+})
+
+app.delete('/:id', async (c) => {
+  const id = parseInt(c.req.param().id)
+
+  const todos = await deleteTodo(id, c.get('token'))
 
   if (todos.length === 1) {
     return c.json({ todo: todos[0] })

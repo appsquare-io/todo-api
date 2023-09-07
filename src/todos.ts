@@ -35,3 +35,14 @@ export async function updateTodo(id: number, todo: InsertTodo, token: string) {
       completed: todos.completed,
     })
 }
+
+export async function deleteTodo(id: number, token: string) {
+  return db
+    .delete(todos)
+    .where(and(eq(todos.id, id), eq(todos.token, token)))
+    .returning({
+      id: todos.id,
+      title: todos.title,
+      completed: todos.completed,
+    })
+}
