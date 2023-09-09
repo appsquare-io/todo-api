@@ -2,17 +2,13 @@ import { Context, Next } from 'hono'
 import { HTTPException } from 'hono/http-exception'
 
 export async function auth(c: Context, next: Next) {
-  let authorization = c.req.header('Authorization')
+  let token = c.req.header('Authorization')?.split(' ')[1]
 
-  if (authorization) {
-    let token = authorization.split(' ')[1]
-
-    if (token) {
-      c.set('token', token)
-
-      await next()
-    }
-  } else {
+  if (!token) {
     throw new HTTPException(401, { message: 'No token provided' })
   }
+
+  c.set('token', token)
+
+  await next()
 }
