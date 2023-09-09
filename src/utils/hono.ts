@@ -1,6 +1,8 @@
-import { Hono } from 'hono'
+import { Context, Hono } from 'hono'
 
-type Variables = { token: string }
+export type Variables = { token: string }
+
+export type AppContext = Context<{ Variables: Variables }>
 
 export function createApp() {
   return new Hono<{ Variables: Variables }>()

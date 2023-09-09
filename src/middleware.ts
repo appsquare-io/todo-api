@@ -1,7 +1,8 @@
-import { Context, Next } from 'hono'
+import { Next } from 'hono'
 import { HTTPException } from 'hono/http-exception'
+import { AppContext } from '~/utils/hono'
 
-export async function auth(c: Context, next: Next) {
+export async function auth(c: AppContext, next: Next) {
   let token = c.req.header('Authorization')?.split(' ')[1]
 
   if (!token) {
